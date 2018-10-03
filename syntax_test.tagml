@@ -1,6 +1,6 @@
-[!-- SYNTAX TEST "Packages/TAGML/TAGML.sublime-syntax" --]
+ SYNTAX TEST "Packages/TAGML/TAGML.sublime-syntax" 
 
-TAGML features
+[!--TAGML features
 
 Elements: [> <]
 Attributes: order-independent
@@ -16,8 +16,7 @@ Whitespace only significant in tags that can contain mixed content.
 
 Datatyping: draw inspiration from FtanML and that one unpopular XML schema language (Schematron?). Should be included in the syntax(?)
 > should be defined in the schema
-
-
+--]
 
 
 [!-- source.tagml markup.open.tagml --]
@@ -65,14 +64,14 @@ thought Alice
 [!-- comments --]
 
 
-// Recursing: in tags, inspired by LMNL
+[!--// Recursing: in tags, inspired by LMNL
 // to facilitate recursion in markup open tags, the annotations/attributes should have begin/end tags.
 // unlike in lmnl, the annotation syntax is distinct from the markup syntax
 // recursion in tags makes parsing and syntax highlighting more complicated.
 [markup (annotation/[a>annotation<a] [v>value<v]/annotation)>[v>mixed<v] content<markup]
 
 (annotation/value with [m>markup<m]/annotation)
-
+--]
 // Milestones: requires more research (and a use case, like marginalia). Anchor+annotation -> LMNL-like ‘document-in-document’
 // Are they really necessary? (probably: inclusion of images -> as placeholders in text)
 [img src='http://example.com/img.png']
@@ -81,30 +80,30 @@ thought Alice
 [a|A1>bla bla [a|A2>bla bla<a|A1] bla bla<a|A2]
 
 
-annotation alternative (like ftanml)
+[!--annotation alternative (like ftanml)
 [markup {annotation |text [w>with<w] markup|}>text<markup]
 [markup {annotation {nested [1 2 3]}>text<markup]
 
 annotation Datatyping
-
-- boolean
+--]
+[!--- boolean--]
 [m done=true>bla<m]
 
-- string
+[!--- string--]
 [m name="Name">bla<m]
 [m name='Name'>bla<m]
 
-- number
+[!--- number--]
 [m age=3.14>bla<m]
 
-- list
+[!--- list--]
 [m todo=["run","jump","fly","continue"]>bla<m]
 
-- nested annotation
+[!--- nested annotation--]
 [m address={street="Broadway", tel 911}}>text<m]
 [m address={street="Broadway" tel=911}>text<m]
 
-- mixed content
+[!--- mixed content--]
 [m motto=[>To [ex>infinity<ex] and beyond<]>bla<m]
 
 
@@ -190,3 +189,73 @@ annotation Datatyping
     location={position={x=1 y=2} countrycode='nl'}>Amsterdam<origin]
 <tag]
 
+
+
+[!-- namespace --]
+[!ns tag http://tag.di.huc.knaw.nl/ns/tag]
+
+[!-- simple start/end tags --]
+[tag>some text<tag]
+
+[!-- add layers --]
+[tag|+A>some text<tag|A]
+
+[!-- milestone tag --]
+[x|A>This is a [milestone|A] tag<x]
+
+[!-- markup annotations: boolean --]
+[tag b=true]
+
+[!-- markup annotations: number --]
+[tag pi=3.14]
+
+[!-- markup annotations: single-quoted string --]
+[tag s1='string']
+
+[!-- markup annotations: double-quoted string --]
+[tag s2="string"]
+
+[!-- markup annotations: list --]
+[tag odd=[1,3,5,7,9]]
+
+[!-- markup annotations: map --]
+[tag map={a=1 b=false c='something'}]
+
+[!-- markup annotations: map, formatted over several lines--]
+[tag map={a=1
+          b=false
+          c='something'}]
+
+[!-- non-linearity --]
+Programming is <|[del>frustrating<del]|[add>rewarding<add]|>
+
+
+[!-- example tagml --]
+[TAGML|+M,+N>
+[text|M,N>
+[l|M>
+[s|N>Une [del|M>[add|M>jolie<add]<del][add|M>belle<add] main de femme, élégante et fine.<l]<s] [l|M>[s|N>Malgré l'agrandissement du close-up.
+<s]
+<l]
+<text]<TAGML]
+
+[b>escape \\ characters<b]
+
+[!--comments
+can
+contain
+multiple
+lines
+--]
+
+
+sdfsaf
+fdsa
+dsfsadf
+safd
+sd
+fasdfasfd
+
+
+[hahah></hahah]]
+[okdan|whatver a=true>text<okdan|whatver]

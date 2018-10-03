@@ -11,82 +11,92 @@ contexts:
     - include: escaped
 
     - match: "\\[!ns [^]]+]"
-      scope: namespace.tagml
+      scope: comment.namespace.tagml
 
-    - match: "\\[!--.*--]"
-      scope: comment.tagml
+    # # single line comments
+    # - match: "\\[!--.*--]"
+    #   scope: comment.block.tagml
+
+    # multi line comments
+    - match: "\\[!--" 
+      scope: punctuation.definition.comment.tagml
+      push: 
+        - meta_scope: comment.block.tagml
+        - match: "--]"
+          scope: punctuation.definition.comment.tagml
+          pop: true
 
     - match: "<\\|"
-      scope: set.open.tagml
+      scope: punctuation.definition.set.begin.tagml
       push: set.ctx
 
     - match: "\\["
-      scope: markup.open.start.tagml
+      scope: punctuation.definition.tag.begin.tagml
       push: markup.open
 
     - match: "<"
-      scope: markup.close.start.tagml
+      scope: punctuation.definition.tag.begin.tagml
       push: markup.close
 
 
   markup.open:
     - match: "[a-zA-Z0-9_]+"
-      scope: name.tagml
+      scope: entity.name.tag.tagml
 
     - match: "\\|"
-      scope: name.layer.divider.tagml
+      scope: punctuation.separator.tagml
       push: layer.ctx
 
     - match: "[\\+-,\\?:\"']+"
-      scope: name.meta.tagml
+      scope: keyword.operator.tagml
 
     - match: " "
       push: annotation.tagml
 
     - match: ">"
-      scope: markup.open.end.tagml
+      scope: punctuation.definition.tag.end.tagml
       pop: true
 
     - match: "]"
-      scope: markup.close.end.tagml
+      scope: punctuation.definition.tag.end.tagml
       pop: true
 
   markup.close:
     - match: "[a-zA-Z0-9_]+"
-      scope: name.tagml
+      scope: entity.name.tag.tagml
 
     - match: "\\|"
-      scope: name.layer.divider.tagml
+      scope: punctuation.separator.tagml
       push: layer.ctx
 
     - match: "[\\|\\+-,\\?:\"']+"
-      scope: name.meta.tagml
+      scope: keyword.operator.tagml
 
     - match: "]"
-      scope: markup.close.end.tagml
+      scope: punctuation.definition.tag.end.tagml
       pop: true
 
 
   set.ctx:
     - match: "\\["
-      scope: markup.open.start.tagml
+      scope: punctuation.definition.tag.begin.tagml
       push: markup.open
 
     - match: "\\|>"
-      scope: set.close.tagml
+      scope: punctuation.definition.set.end.tagml
       pop: true
 
     - match: "\\|"
-      scope: set.divider.tagml
+      scope: punctuation.definition.set.separator.tagml
 
     - match: "<"
-      scope: markup.close.start.tagml
+      scope: punctuation.definition.tag.begin.tagml
       push: markup.close
 
 
   layer.ctx:
     - match: "[\\+,a-zA-Z0-9]+"
-      scope: layer.name.tagml
+      scope: entity.name.section.tagml
       pop: true
 
 
@@ -94,47 +104,43 @@ contexts:
     # - clear_scopes: 1
     - match: "([a-zA-Z0-9_]+)(=)([0-9]+\\.?[0-9]*)"
       captures:
-        1: annotation.name.tagml
-        2: constant.equals.tagml
-        3: constant.number.tagml
+        1: entity.other.attribute-name.localname.tagml
+        2: keyword.operator.tagml
+        3: constant.numeric.tagml
       pop: true
 
-    - match: "([a-zA-Z0-9_]+)(=)(\")([^\"]*)(\")"
+    - match: "([a-zA-Z0-9_]+)(=)(\"[^\"]*\")"
       captures:
-        1: annotation.name.tagml
-        2: constant.equals.tagml
-        3: annotation.brackets.tagml
-        4: constant.string.tagml
-        5: annotation.brackets.tagml
+        1: entity.other.attribute-name.localname.tagml
+        2: keyword.operator.tagml
+        3: string.quoted.double.tagml
       pop: true
 
-    - match: "([a-zA-Z0-9_]+)(=)(')([^']*)(')"
+    - match: "([a-zA-Z0-9_]+)(=)('[^']*')"
       captures:
-        1: annotation.name.tagml
-        2: constant.equals.tagml
-        3: annotation.brackets.tagml
-        4: constant.string.tagml
-        5: annotation.brackets.tagml
+        1: entity.other.attribute-name.localname.tagml
+        2: keyword.operator.tagml
+        3: string.quoted.single.tagml
       pop: true
 
     - match: "([a-zA-Z0-9_]+)(=)([Tt][Rr][Uu][Ee])"
       captures:
-        1: annotation.name.tagml
-        2: constant.equals.tagml
-        3: constant.boolean.tagml
+        1: entity.other.attribute-name.localname.tagml
+        2: keyword.operator.tagml
+        3: constant.language.boolean.tagml
       pop: true
 
     - match: "([a-zA-Z0-9_]+)(=)([Ff][Aa][Ll][Ss][Ee])"
       captures:
-        1: annotation.name.tagml
-        2: constant.equals.tagml
-        3: constant.boolean.tagml
+        1: entity.other.attribute-name.localname.tagml
+        2: keyword.operator.tagml
+        3: constant.language.boolean.tagml
       pop: true
 
     - match: "([a-zA-Z0-9_]+)(=)({)(.*)(})"
       captures:
-        1: annotation.name.tagml
-        2: constant.equals.tagml
+        1: entity.other.attribute-name.localname.tagml
+        2: keyword.operator.tagml
         3: annotation.brackets.tagml
         4: constant.object.tagml
         5: annotation.brackets.tagml
@@ -142,8 +148,8 @@ contexts:
 
     - match: "([a-zA-Z0-9_]+)(=)(\\[>)(.*)(<\\])"
       captures:
-        1: annotation.name.tagml
-        2: constant.equals.tagml
+        1: entity.other.attribute-name.localname.tagml
+        2: keyword.operator.tagml
         3: annotation.brackets.tagml
         4: constant.richtext.tagml
         5: annotation.brackets.tagml
@@ -151,8 +157,8 @@ contexts:
 
     - match: "([a-zA-Z0-9_]+)(=)(\\[)([^\\]]*)(\\])"
       captures:
-        1: annotation.name.tagml
-        2: constant.equals.tagml
+        1: entity.other.attribute-name.localname.tagml
+        2: keyword.operator.tagml
         3: annotation.brackets.tagml
         4: constant.list.tagml
         5: annotation.brackets.tagml

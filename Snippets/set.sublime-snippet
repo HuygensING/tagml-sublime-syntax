@@ -1,0 +1,6 @@
+<snippet>
+	<description>Set</description>
+	<content><![CDATA[<|${1:branch1}|${2:branch2}|>]]></content>
+	<tabTrigger>&lt;|</tabTrigger>
+	<scope>text.tagml</scope>
+</snippet>
