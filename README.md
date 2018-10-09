@@ -3,7 +3,7 @@ Sublime Syntax for [TAGML](https://github.com/HuygensING/TAG/tree/master/TAGML)
 
 ## Installation
 
-### With Package Control:
+### With [Package Control](https://packagecontrol.io/installation):
 
 1. Run the `Package Control: Install Package` command, find and install the TAGML plugin.
 1. Restart Sublime Text (if required)
