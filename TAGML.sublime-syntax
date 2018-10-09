@@ -47,7 +47,7 @@ contexts:
       scope: punctuation.separator.tagml
       push: layer.ctx
 
-    - match: "[\\+-,\\?:\"']+"
+    - match: "[\\+\\-,\\?:\"']+"
       scope: keyword.operator.tagml
 
     - match: " "
@@ -69,7 +69,7 @@ contexts:
       scope: punctuation.separator.tagml
       push: layer.ctx
 
-    - match: "[\\|\\+-,\\?:\"']+"
+    - match: "[\\+\\-,\\?:\"']+"
       scope: keyword.operator.tagml
 
     - match: "]"
