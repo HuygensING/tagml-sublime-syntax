@@ -14,11 +14,11 @@ contexts:
       scope: comment.namespace.tagml
 
     # multi line comments
-    - match: "\\[!--" 
+    - match: "\\[!" 
       scope: punctuation.definition.comment.tagml
       push: 
         - meta_scope: comment.block.tagml
-        - match: "--]"
+        - match: "!]"
           scope: punctuation.definition.comment.tagml
           pop: true
 
