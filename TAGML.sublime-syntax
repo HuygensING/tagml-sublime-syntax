@@ -2,8 +2,7 @@
 ---
 name: TAGML
 # See http://www.sublimetext.com/docs/3/syntax.html
-file_extensions:
-  - tagml
+file_extensions: [tagml, tag]
 scope: text.tagml
 
 contexts:
