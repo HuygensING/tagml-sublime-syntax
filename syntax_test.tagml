@@ -228,6 +228,8 @@ multiple
 lines
 !]
 
+[tag a=true pers->pers0001>some text<tag]
+
 [! example !]
 [text>
 [body|+Q,+L>

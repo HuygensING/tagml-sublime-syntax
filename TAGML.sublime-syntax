@@ -159,6 +159,13 @@ contexts:
         5: annotation.brackets.tagml
       pop: true
 
+    - match: "([a-zA-Z0-9_]+)(->)([a-zA-Z0-9_]+)"
+      captures:
+        1: entity.other.attribute-name.localname.tagml
+        2: keyword.operator.tagml
+        3: constant.other.tagml
+      pop: true
+
   escaped:
     - match: \\.
       scope: constant.character.escape.tagml
