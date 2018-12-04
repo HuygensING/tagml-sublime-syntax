@@ -247,3 +247,7 @@ lines
   <lg|L]
 <body|Q,L]
 <text]
+
+
+[! escaping in text annotations !]
+[m a="foo \" bar" b='bar \' foo']
