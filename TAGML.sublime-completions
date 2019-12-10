@@ -4,7 +4,7 @@
     "completions":
     [
         { "trigger": "<|", "contents": "<|$1|$2|>" },
-        { "trigger": "[!n", "contents": "[!ns $1]" },
-        { "trigger": "[!s", "contents": "[!schema $1]" }
+        { "trigger": "[!n", "contents": "[!ns $1" },
+        { "trigger": "[!s", "contents": "[!schema $1" }
     ]
 }
