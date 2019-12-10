@@ -3,6 +3,8 @@
 
     "completions":
     [
-        { "trigger": "<|", "contents": "<|$1|$2|>" }
+        { "trigger": "<|", "contents": "<|$1|$2|>" },
+        { "trigger": "[!n", "contents": "[!ns $1]" },
+        { "trigger": "[!s", "contents": "[!schema $1]" }
     ]
 }

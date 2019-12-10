@@ -1,5 +1,6 @@
 SYNTAX TEST "Packages/TAGML/TAGML.sublime-syntax" 
 
+[!schema http://someplace.com/schema.yaml]
 [! TAGML features
 
 Elements: [> <]
