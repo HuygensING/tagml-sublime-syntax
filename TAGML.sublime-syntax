@@ -12,6 +12,9 @@ contexts:
     - match: "\\[!ns [^]]+]"
       scope: comment.namespace.tagml
 
+    - match: "\\[!schema [^]]+]"
+      scope: comment.schemalocation.tagml
+
     # multi line comments
     - match: "\\[!" 
       scope: punctuation.definition.comment.tagml

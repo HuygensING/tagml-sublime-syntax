@@ -1777,6 +1777,15 @@
       </dict>
       <dict>
         <key>scope</key>
+        <string>comment.schemalocation.tagml</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#b3eac4</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>scope</key>
         <string>comment.tagml</string>
         <key>settings</key>
         <dict>
