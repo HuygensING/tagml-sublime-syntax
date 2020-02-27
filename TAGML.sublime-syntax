@@ -99,6 +99,7 @@ contexts:
 
 
   annotation.tagml:
+    # numbervalue
     - match: "([a-zA-Z0-9_]+)(=)([0-9]+\\.?[0-9]*)"
       captures:
         1: entity.other.attribute-name.localname.tagml
@@ -106,6 +107,7 @@ contexts:
         3: constant.numeric.tagml
       pop: true
 
+    # stringValue(doubleQuoted)
     - match: "([a-zA-Z0-9_]+)(=)(\"([^\"\\\\]|\\\\.)*\")"
       captures:
         1: entity.other.attribute-name.localname.tagml
@@ -113,6 +115,7 @@ contexts:
         3: string.quoted.double.tagml
       pop: true
 
+    # stringValue(singleQuoted)
     - match: "([a-zA-Z0-9_]+)(=)('([^'\\\\]|\\\\.)*')"
       captures:
         1: entity.other.attribute-name.localname.tagml
@@ -120,6 +123,7 @@ contexts:
         3: string.quoted.single.tagml
       pop: true
 
+    # booleanValue TRUE
     - match: "([a-zA-Z0-9_]+)(=)([Tt][Rr][Uu][Ee])"
       captures:
         1: entity.other.attribute-name.localname.tagml
@@ -127,6 +131,7 @@ contexts:
         3: constant.language.boolean.tagml
       pop: true
 
+    # booleanValue FALSE
     - match: "([a-zA-Z0-9_]+)(=)([Ff][Aa][Ll][Ss][Ee])"
       captures:
         1: entity.other.attribute-name.localname.tagml
@@ -134,7 +139,8 @@ contexts:
         3: constant.language.boolean.tagml
       pop: true
 
-    - match: "([a-zA-Z0-9_]+)(=)({)(.*)(})"
+    # objectValue (could be nested, needs more work!)
+    - match: "([a-zA-Z0-9_]+)(=)({)(.*?)(})"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
@@ -143,6 +149,7 @@ contexts:
         5: annotation.brackets.tagml
       pop: true
 
+    # richTextValue (could be nested, needs more work!)
     - match: "([a-zA-Z0-9_]+)(=)(\\[>)(.*)(<\\])"
       captures:
         1: entity.other.attribute-name.localname.tagml
@@ -152,6 +159,7 @@ contexts:
         5: annotation.brackets.tagml
       pop: true
 
+    # listValue (could be nested, needs more work!)
     - match: "([a-zA-Z0-9_]+)(=)(\\[)([^\\]]*)(\\])"
       captures:
         1: entity.other.attribute-name.localname.tagml
@@ -161,6 +169,7 @@ contexts:
         5: annotation.brackets.tagml
       pop: true
 
+    # linkValue
     - match: "([a-zA-Z0-9_]+)(->)([a-zA-Z0-9_]+)"
       captures:
         1: entity.other.attribute-name.localname.tagml
