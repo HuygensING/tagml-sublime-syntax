@@ -127,15 +127,7 @@ contexts:
       pop: true
 
     # booleanValue TRUE
-    - match: "({{name}})(=)([Tt][Rr][Uu][Ee])"
-      captures:
-        1: entity.other.attribute-name.localname.tagml
-        2: keyword.operator.tagml
-        3: constant.language.boolean.tagml
-      pop: true
-
-    # booleanValue FALSE
-    - match: "({{name}})(=)([Ff][Aa][Ll][Ss][Ee])"
+    - match: "({{name}})(=)([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
