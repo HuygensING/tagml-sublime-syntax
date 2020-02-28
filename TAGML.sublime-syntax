@@ -19,9 +19,9 @@ contexts:
       scope: comment.schemalocation.tagml
 
     # multi line comments
-    - match: "\\[!" 
+    - match: "\\[!"
       scope: punctuation.definition.comment.tagml
-      push: 
+      push:
         - meta_scope: comment.block.tagml
         - match: "!]"
           scope: punctuation.definition.comment.tagml
@@ -103,7 +103,7 @@ contexts:
 
   annotation.tagml:
     # numbervalue
-    - match: "({{name}})(=)([0-9]+\\.?[0-9]*)"
+    - match: "{{name}}(=)([0-9]+\\.?[0-9]*)"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
@@ -111,7 +111,7 @@ contexts:
       pop: true
 
     # stringValue(doubleQuoted)
-    - match: "({{name}})(=)(\"([^\"\\\\]|\\\\.)*\")"
+    - match: "{{name}}(=)(\"([^\"\\\\]|\\\\.)*\")"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
@@ -119,15 +119,15 @@ contexts:
       pop: true
 
     # stringValue(singleQuoted)
-    - match: "({{name}})(=)('([^'\\\\]|\\\\.)*')"
+    - match: "{{name}}(=)('([^'\\\\]|\\\\.)*')"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
         3: string.quoted.single.tagml
       pop: true
 
-    # booleanValue TRUE
-    - match: "({{name}})(=)([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])"
+    # booleanValue FALSE
+    - match: "{{name}}(=)([Ff][Aa][Ll][Ss][Ee]|[Tt][Rr][Uu][Ee])"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
@@ -135,7 +135,7 @@ contexts:
       pop: true
 
     # objectValue (could be nested, needs more work!)
-    - match: "({{name}})(=)({)(.*?)(})"
+    - match: "{{name}}(=)({)(.*?)(})"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
@@ -145,7 +145,7 @@ contexts:
       pop: true
 
     # richTextValue (could be nested, needs more work!)
-    - match: "({{name}})(=)(\\[>)(.*)(<\\])"
+    - match: "{{name}}(=)(\\[>)(.*)(<\\])"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
@@ -155,7 +155,7 @@ contexts:
       pop: true
 
     # listValue (could be nested, needs more work!)
-    - match: "({{name}})(=)(\\[)([^\\]]*)(\\])"
+    - match: "{{name}}(=)(\\[)([^\\]]*)(\\])"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
@@ -165,7 +165,7 @@ contexts:
       pop: true
 
     # linkValue
-    - match: "({{name}})(->)({{name}})"
+    - match: "{{name}}(->){{name}}"
       captures:
         1: entity.other.attribute-name.localname.tagml
         2: keyword.operator.tagml
